@@ -474,7 +474,7 @@ public extension AuthorizationCodeFlowPKCEBackendManager {
             
             Self.logger.trace("received authInfo:\n\(authInfo)")
             
-            if authInfo.accessToken == nil ||
+            /*if authInfo.accessToken == nil ||
                     authInfo.refreshToken == nil ||
                     authInfo.expirationDate == nil {
                 
@@ -487,7 +487,20 @@ public extension AuthorizationCodeFlowPKCEBackendManager {
                 Self.logger.error("\(errorMessage)")
                 throw SpotifyGeneralError.other(errorMessage)
                 
-            }
+            }*/
+
+			if authInfo.accessToken == nil ||
+        	authInfo.expirationDate == nil {
+    
+    		let errorMessage = """
+        		missing properties after refreshing access token \
+        		(expected access token and expiration date):
+        		\(authInfo)
+        	"""
+    		Self.logger.error("\(errorMessage)")
+    		throw SpotifyGeneralError.other(errorMessage)
+    
+			}
             
             self.updateFromAuthInfo(authInfo)
             
