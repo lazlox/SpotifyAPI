@@ -599,8 +599,8 @@ public extension AuthorizationCodeFlowPKCEBackendManager {
                          invalid. This implies that Spotify should always return
                          a new refresh token in addition to an access token.
                          */
-                        if authInfo.accessToken == nil ||
-                                authInfo.refreshToken == nil ||
+                        if authInfo.accessToken == nil /*||
+                                authInfo.refreshToken == nil*/ ||
                                 authInfo.expirationDate == nil {
                             
                             let errorMessage = """
